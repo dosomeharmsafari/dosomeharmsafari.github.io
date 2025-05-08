@@ -14,9 +14,9 @@ timezone:
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: dosomeharmsafari # the main title
+title: Home # the main title
 
-tagline:  # it will display as the subtitle
+tagline: of dosomeharmsafari # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   Personal database to be safaried.
