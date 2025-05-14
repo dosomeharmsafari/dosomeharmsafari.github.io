@@ -2,3 +2,11 @@
 layout: home
 # Index page
 ---
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var el = document.querySelector("#sidebar > header > a.site-title.d-block");
+  if (el) {
+    el.style.fontSize = "1.5em"; // Set to your desired size, e.g., "24px", "2em", etc.
+  }
+});
+</script>
