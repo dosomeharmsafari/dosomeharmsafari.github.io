@@ -7,8 +7,8 @@ plugins:
 # Import the theme
 # theme: jekyll-theme-chirpy
 # remote_theme: NewJerseyStyle/jekyll-theme-chirpy
-remote_theme: NewJerseyStyle/jekyll-theme-chirpy@master
 # remote_theme: https://github.com/NewJerseyStyle/jekyll-theme-chirpy@master
+remote_theme: https://github.com/NewJerseyStyle/jekyll-theme-chirpy
 theme_version: "7.3.0"
 
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
