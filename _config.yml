@@ -1,7 +1,8 @@
 # The Site Configuration
 
 # Import the theme
-theme: jekyll-theme-chirpy
+# theme: jekyll-theme-chirpy
+remote_theme: NewJerseyStyle/jekyll-theme-chirpy
 
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
@@ -25,11 +26,11 @@ description: >- # used by seo meta and the atom feed
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
 url: "https://dosomeharmsafari.github.io"
 
-# github:
-#   username: # change to your GitHub username
+github:
+  username: # change to your GitHub username
 
-# twitter:
-#   username: # change to your Twitter username
+twitter:
+  username: # change to your Twitter username
 
 social:
   # Change to your full name.
@@ -39,6 +40,7 @@ social:
   links:
     # The first element serves as the copyright owner's link
     - https://www.instagram.com/dosomeharmsafari
+    - https://www.threads.com/dosomeharmsafari
     # - https://twitter.com/username # change to your Twitter homepage
     # - https://github.com/username # change to your GitHub homepage
     # Uncomment below to add more social links
@@ -99,7 +101,7 @@ theme_mode: # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: https://github.com/dosomeharmsafari/dosomeharmsafari.github.io/blob/main/_data/avatar.png?raw=true
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
@@ -225,3 +227,6 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+plugins:
+  - jekyll-remote-theme
