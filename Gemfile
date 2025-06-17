@@ -2,8 +2,8 @@
 
 source "https://rubygems.org"
 
-# gem "jekyll-theme-chirpy", "~> 7.2", ">= 7.2.4"
-gem "jekyll-remote-theme"
+gem "jekyll-theme-chirpy", "~> 7.2", ">= 7.2.4"
+# gem "jekyll-remote-theme"
 gem "jekyll-paginate"
 gem "jekyll-seo-tag"
 gem "jekyll-archives"
