@@ -30,11 +30,11 @@ description: >- # used by seo meta and the atom feed
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
 url: "https://dosomeharmsafari.github.io"
 
-github:
-  username: # change to your GitHub username
+# github:
+#   username: # change to your GitHub username
 
-twitter:
-  username: # change to your Twitter username
+# twitter:
+#   username: # change to your Twitter username
 
 social:
   # Change to your full name.
