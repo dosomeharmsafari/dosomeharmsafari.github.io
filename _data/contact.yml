@@ -13,10 +13,10 @@
 # - type: email
 #   icon: "fas fa-envelope"
 #   noblank: true # open link in current tab
-
-- type: rss
-  icon: "fas fa-rss"
-  noblank: true
+#
+# - type: rss
+#   icon: "fas fa-rss"
+#   noblank: true
 # Uncomment and complete the url below to enable more contact options
 #
 # - type: mastodon
@@ -41,4 +41,8 @@
 
 - type: threads
   icon: 'fa-brands fa-threads'
-  url: 'https://www.threads.com/dosomeharmsafari'                   # Fill with your Threads profile link
+  url: 'https://www.threads.com/dosomeharmsafari'
+
+- type: rss
+  icon: "fas fa-rss"
+  noblank: true
