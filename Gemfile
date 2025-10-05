@@ -10,6 +10,10 @@ gem "jekyll-archives"
 gem "jekyll-sitemap"
 gem "jekyll-include-cache"
 
+group :jekyll_plugins do
+    gem "jektex"
+end
+
 gem "html-proofer", "~> 5.0", group: :test
 
 platforms :mingw, :x64_mingw, :mswin, :jruby do
