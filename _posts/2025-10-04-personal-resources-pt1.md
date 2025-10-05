@@ -5,6 +5,7 @@ date: 2025-10-04 23:10:00 +0800
 categories: [thoughts]
 tags: [game]
 render_with_liquid: false
+jektex: true
 ---
 # 你的「精力」比「金錢」更有限：重新定義你真正擁有的資源
 
