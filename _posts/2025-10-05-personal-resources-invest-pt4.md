@@ -4,6 +4,7 @@ author: ddosomeharmsafari
 date: 2025-10-05 08:10:00 +0800
 categories: [thoughts]
 tags: [game]
+math: true
 render_with_liquid: false
 ---
 
