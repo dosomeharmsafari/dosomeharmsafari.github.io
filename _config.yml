@@ -3,6 +3,8 @@
 # plugins:
 #   - jekyll-remote-theme
 #   - jekyll-paginate
+plugins:
+    - jektex
 
 # Import the theme
 theme: jekyll-theme-chirpy
@@ -231,3 +233,6 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+jektex:
+  ignore: ["*.xml", "README.md", "_drafts/*" ]
