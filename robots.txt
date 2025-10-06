@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: https://dosomeharmsafari.github.io/sitemap.xml
