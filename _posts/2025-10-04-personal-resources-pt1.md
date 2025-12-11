@@ -1,7 +1,7 @@
 ---
 title: 你的「精力」比「金錢」更有限
 author: ddosomeharmsafari
-date: 2025-10-04 23:10:00 +0800
+date: 2025-12-10 23:10:00 +0800
 categories: [thoughts]
 tags: [game]
 render_with_liquid: false
