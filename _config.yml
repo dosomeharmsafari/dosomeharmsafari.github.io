@@ -232,7 +232,7 @@ jekyll-archives:
     tag: tag
   permalinks:
     tag: /tags/:name/
-    category: /projects/:name/
+    category: /categories/:name/
 
 jektex:
   ignore: ["*.xml", "README.md", "_drafts/*" ]

@@ -77,7 +77,7 @@ df:
     strftime: "%Y/%m/%d"
     dayjs: "YYYY/MM/DD"
 
-# projects page
-projects:
+# categories page
+categories:
   category_measure: 個分類
   post_measure: 篇文章
