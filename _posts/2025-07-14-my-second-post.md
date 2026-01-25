@@ -2,7 +2,7 @@
 title: 《不赦之罪》觀後感
 author: dosomeharmsafari
 date: 2025-07-14 14:10:00 +0800
-categories: [Movie]
+projects: [Movie]
 tags: [writing]
 render_with_liquid: false
 ---

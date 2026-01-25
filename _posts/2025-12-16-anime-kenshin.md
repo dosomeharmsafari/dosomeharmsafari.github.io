@@ -2,7 +2,7 @@
 title: 《神劍闖江湖追憶篇》觀後感
 author: ddosomeharmsafari
 date: 2025-12-16 01:10:00 +0800
-categories: [Movie]
+projects: [Movie]
 tags: [writing]
 render_with_liquid: false
 ---

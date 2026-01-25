@@ -2,7 +2,7 @@
 title: 當資源有限時，理性決策變成奢侈品
 author: ddosomeharmsafari
 date: 2025-12-11 04:10:00 +0800
-categories: [thoughts]
+projects: [thoughts]
 tags: [game]
 render_with_liquid: false
 ---

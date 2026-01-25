@@ -226,13 +226,13 @@ exclude:
   - "package*.json"
 
 jekyll-archives:
-  enabled: [categories, tags]
+  enabled: [projects, tags]
   layouts:
     category: category
     tag: tag
   permalinks:
     tag: /tags/:name/
-    category: /categories/:name/
+    category: /projects/:name/
 
 jektex:
   ignore: ["*.xml", "README.md", "_drafts/*" ]

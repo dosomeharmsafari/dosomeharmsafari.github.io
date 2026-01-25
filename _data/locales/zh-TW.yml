@@ -11,7 +11,7 @@ layout:
 tabs:
   # format: <filename_without_extension>: <value>
   home: 首頁
-  categories: 分類
+  projects: 分類
   tags: 標籤
   archives: 封存
   about: 關於
@@ -77,7 +77,7 @@ df:
     strftime: "%Y/%m/%d"
     dayjs: "YYYY/MM/DD"
 
-# categories page
-categories:
+# projects page
+projects:
   category_measure: 個分類
   post_measure: 篇文章

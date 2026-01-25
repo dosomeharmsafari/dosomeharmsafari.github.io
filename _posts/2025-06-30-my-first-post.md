@@ -2,7 +2,7 @@
 title: 《慧童》觀後感
 author: dosomeharmsafari
 date: 2025-06-30 14:10:00 +0800
-categories: [Movie]
+projects: [Movie]
 tags: [writing]
 render_with_liquid: false
 ---

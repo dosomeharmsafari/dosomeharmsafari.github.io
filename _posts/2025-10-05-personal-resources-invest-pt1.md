@@ -2,7 +2,7 @@
 title: 選擇的兩難
 author: ddosomeharmsafari
 date: 2025-12-11 03:10:00 +0800
-categories: [thoughts]
+projects: [thoughts]
 tags: [game]
 render_with_liquid: false
 ---
