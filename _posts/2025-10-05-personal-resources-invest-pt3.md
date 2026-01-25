@@ -2,7 +2,7 @@
 title: 日常生活關係的經濟
 author: ddosomeharmsafari
 date: 2025-12-11 06:10:00 +0800
-projects: [thoughts]
+categories: [thoughts]
 tags: [game]
 render_with_liquid: false
 ---

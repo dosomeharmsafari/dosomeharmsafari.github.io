@@ -2,7 +2,7 @@
 title: 機場跑道是如何命名的
 author: dosomeharmsafari
 date: 2025-07-14 14:10:00 +0800
-projects: [Aviation]
+categories: [Aviation]
 tags: []
 render_with_liquid: false
 ---

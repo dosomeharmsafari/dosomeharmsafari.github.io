@@ -2,7 +2,7 @@
 title: 如果靈魂換了，愛還在嗎？
 author: ddosomeharmsafari
 date: 2026-01-19 07:30:00 +0800
-projects: [thoughts]
+categories: [thoughts]
 tags: [哲學, love, ethics]
 render_with_liquid: false
 ---
