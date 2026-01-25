@@ -11,7 +11,7 @@ layout:
 tabs:
   # format: <filename_without_extension>: <value>
   home: 首頁
-  projects: 分類
+  categories: 分類
   tags: 標籤
   archives: 封存
   about: 關於
