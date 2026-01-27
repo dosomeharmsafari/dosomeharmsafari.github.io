@@ -34,7 +34,7 @@ copyright:
     name: All rights reserved
 
   # Displayed in the footer
-  brief: Some rights reserved
+  brief: All rights reserved for articles
   verbose: >-
     Unless otherwise stated, all posts on this blog are all rights reserved.
 
@@ -80,3 +80,4 @@ df:
 categories:
   category_measure: Projects
   post_measure: Posts
+
