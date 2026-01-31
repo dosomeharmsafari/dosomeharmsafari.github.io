@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amy's Decision Framework</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --surface: #f8f8f8;
+            --border: #d0d0d0;
+            --text: #000000;
+            --text-dim: #000000;
+            --accent: #689f38;
+            --accent-dim: #558b2f;
+            --warning: #d63031;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        h1 {
+            font-family: 'Space Mono', monospace;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: var(--surface);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.75rem 1.5rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 700;
+        }
+
+        button:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        button.danger {
+            border-color: var(--warning);
+            color: var(--warning);
+        }
+
+        button.danger:hover {
+            background: var(--warning);
+            color: var(--bg);
+        }
+
+        .step {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -12px;
+            left: 1rem;
+            background: var(--bg);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.25rem 0.5rem;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .step h2 {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .question {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 1rem;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            resize: vertical;
+            margin-bottom: 1rem;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.75rem;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        #decision-name {
+            background: rgba(255, 249, 196, 0.3);
+            border: 2px solid #fbc02d;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(251, 192, 45, 0.2);
+        }
+
+        #decision-name:focus {
+            background: rgba(255, 245, 157, 0.4);
+            box-shadow: 0 4px 12px rgba(251, 192, 45, 0.3);
+        }
+
+        #decision-name::placeholder {
+            color: #9e9e9e;
+        }
+
+        .task-list {
+            margin-bottom: 1rem;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            margin-bottom: 0.5rem;
+        }
+
+        .task-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--accent);
+        }
+
+        .task-item input[type="text"] {
+            flex: 1;
+            margin: 0;
+            padding: 0.5rem;
+            background: var(--bg);
+        }
+
+        .task-item.completed input[type="text"] {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .task-item .remove-task-btn {
+            background: transparent;
+            border: 1px solid var(--warning);
+            color: var(--warning);
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .add-task-btn {
+            width: 100%;
+            border-style: dashed;
+            padding: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .option-container {
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--bg);
+        }
+
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .option-title {
+            font-family: 'Space Mono', monospace;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .remove-btn {
+            background: transparent;
+            border: 1px solid var(--warning);
+            color: var(--warning);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+        }
+
+        .add-option-btn {
+            width: 100%;
+            border-style: dashed;
+            margin-top: 1rem;
+        }
+
+        .note {
+            background: rgba(104, 159, 56, 0.1);
+            border-left: 3px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .step1-reference {
+            background: rgba(158, 158, 158, 0.1);
+            border-left: 3px solid #9e9e9e;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .step1-reference h3 {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .step1-reference-item {
+            margin-bottom: 0.5rem;
+            margin-left: 1rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .step1-reference-label {
+            font-weight: 600;
+            color: var(--text-dim);
+        }
+
+        .step1-reference-text {
+            color: var(--text);
+            margin-left: 0.5rem;
+        }
+
+        .saved-indicator {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 0.75rem 1.5rem;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .saved-indicator.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .step {
+                padding: 1.5rem;
+            }
+        }
+
+        @media print {
+            .controls, .saved-indicator, .add-option-btn, .remove-btn, .add-task-btn, .remove-task-btn {
+                display: none !important;
+            }
+
+            .step {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                position: relative;
+                padding-top: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .step-number {
+                position: relative !important;
+                top: 0 !important;
+                left: 0 !important;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
+
+            .option-container {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            body {
+                padding: 0;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            h2, h3, .question {
+                page-break-after: avoid !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>THE AMY METHOD</h1>
+            <div class="subtitle">Decision-Making Framework for Open-ended Questions</div>
+        </header>
+
+        <div class="controls">
+            <button onclick="saveDecision()">💾 SAVE</button>
+            <button onclick="loadDecision()">📂 LOAD</button>
+            <button onclick="exportDecision()">📤 EXPORT JSON</button>
+            <button onclick="printPDF()">🖨️ PRINT PDF</button>
+            <button class="danger" onclick="clearAll()">🗑️ CLEAR ALL</button>
+        </div>
+
+        <input type="text" id="decision-name" placeholder="Decision name (e.g. Should I get a pilot license?)" />
+
+        <!-- STEP 1 -->
+        <div class="step">
+            <span class="step-number">STEP 1</span>
+            <h2>What am I trying to get from this?</h2>
+
+            <div class="question">→ What's my incentive? (Why do I want this? What drives me?)</div>
+            <textarea id="step1-incentive" placeholder="Your answer..."></textarea>
+
+            <div class="question">→ What am I trying to solve? Am I trying to escape from something?</div>
+            <textarea id="step1-problem" placeholder="Your answer..."></textarea>
+
+            <div class="question">→ Does this match my value/life goal?</div>
+            <textarea id="step1-values" placeholder="Your answer..."></textarea>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step">
+            <span class="step-number">STEP 2</span>
+            <h2>What are the choices I have?</h2>
+            
+            <div class="question">→ List all options (including "do nothing")</div>
+            <div id="options-list"></div>
+            <button class="add-option-btn" onclick="addOption()">+ ADD OPTION</button>
+        </div>
+
+        <!-- STEP 3-6 will be generated for each option -->
+        <div id="option-analysis"></div>
+
+        <!-- STEP 7 -->
+        <div class="step">
+            <span class="step-number">STEP 7</span>
+            <h2>Compare all options</h2>
+
+            <div class="step1-reference" id="step1-reference">
+                <h3>📌 Your Step 1 Answers</h3>
+                <div class="step1-reference-item">
+                    <span class="step1-reference-label">Incentive:</span>
+                    <span class="step1-reference-text" id="ref-incentive">—</span>
+                </div>
+                <div class="step1-reference-item">
+                    <span class="step1-reference-label">Problem to solve:</span>
+                    <span class="step1-reference-text" id="ref-problem">—</span>
+                </div>
+                <div class="step1-reference-item">
+                    <span class="step1-reference-label">Values/Goals:</span>
+                    <span class="step1-reference-text" id="ref-values">—</span>
+                </div>
+            </div>
+
+            <div class="question">→ Which option aligns the most with my goals and incentives?</div>
+            <textarea id="step7-match" placeholder="Your answer..."></textarea>
+
+            <div class="question">→ Which option's worst case scenario can I actually bear? (Rule out the options whose worst-case scenarios you cannot tolerate.)</div>
+            <textarea id="step7-bear" placeholder="Your answer..."></textarea>
+
+            <div class="question">→ Which option's gain feels meaningful enough that the downside doesn't outweigh it in your gut?</div>
+            <textarea id="step7-worth" placeholder="Your answer..."></textarea>
+
+            <div class="question">→Which option gives most optionality? (Unlock the different futures I can step into)</div>
+            <textarea id="step7-optionality" placeholder="Your answer..."></textarea>
+        </div>
+
+        <!-- STEP 8 -->
+        <div class="step">
+            <span class="step-number">STEP 8</span>
+            <h2>Decide</h2>
+
+            <div class="step1-reference" style="margin-bottom: 2rem;">
+                <h3>📌 Your Options</h3>
+                <div id="options-reminder" style="margin-left: 1rem; font-size: 0.85rem; line-height: 1.5;">
+                    <em style="color: var(--text-dim);">Your options will appear here after you add them.</em>
+                </div>
+            </div>
+
+            <div class="question">→ Pick one option:</div>
+            <textarea id="step8-choice" placeholder="Your decision..."></textarea>
+
+            <div class="question">→ What is blocking my way? How to get rid of the barrier?</div>
+            <textarea id="step8-needs" placeholder="Your answer..."></textarea>
+
+            <div class="question">→ Break into small doable tasks:</div>
+            <div class="task-list" id="task-list"></div>
+            <button class="add-task-btn" onclick="addTask()">+ ADD TASK</button>
+
+            <div class="question">→ Set stop point (so I'm not trapped):</div>
+            <textarea id="step8-stoppoint" placeholder="You can always opt out. What is the deal breaker?"></textarea>
+        </div>
+    </div>
+
+    <div class="saved-indicator" id="saved-indicator">SAVED ✓</div>
+
+    <script>
+        let options = [];
+        let optionCounter = 0;
+        let tasks = [];
+        let taskCounter = 0;
+
+        // Auto-save on input
+        document.addEventListener('input', (e) => {
+            autoSave();
+            // Update Step 1 reference in Step 7 when Step 1 fields change
+            if (e.target.id === 'step1-values' || e.target.id === 'step1-problem' || e.target.id === 'step1-incentive') {
+                updateStep1Reference();
+            }
+        });
+
+        function updateStep1Reference() {
+            const values = document.getElementById('step1-values').value;
+            const problem = document.getElementById('step1-problem').value;
+            const incentive = document.getElementById('step1-incentive').value;
+
+            document.getElementById('ref-values').textContent = values || '—';
+            document.getElementById('ref-problem').textContent = problem || '—';
+            document.getElementById('ref-incentive').textContent = incentive || '—';
+
+            // Update all option analysis references
+            document.querySelectorAll('.step1-ref-values').forEach(el => el.textContent = values || '—');
+            document.querySelectorAll('.step1-ref-problem').forEach(el => el.textContent = problem || '—');
+            document.querySelectorAll('.step1-ref-incentive').forEach(el => el.textContent = incentive || '—');
+        }
+
+        function addTask() {
+            taskCounter++;
+            const taskId = `task-${taskCounter}`;
+            tasks.push({ id: taskId, completed: false, text: '' });
+
+            const taskList = document.getElementById('task-list');
+            const taskDiv = document.createElement('div');
+            taskDiv.className = 'task-item';
+            taskDiv.id = taskId;
+            taskDiv.innerHTML = `
+                <input type="checkbox" onchange="toggleTask('${taskId}')" />
+                <input type="text" placeholder="Enter task..." oninput="updateTaskText('${taskId}', this.value)" />
+                <button class="remove-task-btn" onclick="removeTask('${taskId}')">×</button>
+            `;
+            taskList.appendChild(taskDiv);
+            autoSave();
+        }
+
+        function toggleTask(taskId) {
+            const taskItem = document.getElementById(taskId);
+            const task = tasks.find(t => t.id === taskId);
+            task.completed = !task.completed;
+
+            if (task.completed) {
+                taskItem.classList.add('completed');
+            } else {
+                taskItem.classList.remove('completed');
+            }
+            autoSave();
+        }
+
+        function updateTaskText(taskId, text) {
+            const task = tasks.find(t => t.id === taskId);
+            task.text = text;
+        }
+
+        function removeTask(taskId) {
+            tasks = tasks.filter(t => t.id !== taskId);
+            document.getElementById(taskId).remove();
+            autoSave();
+        }
+
+        function addOption() {
+            optionCounter++;
+            const optionId = `option-${optionCounter}`;
+            options.push(optionId);
+
+            // Add "do nothing" option after first real option
+            if (options.length === 1) {
+                setTimeout(() => {
+                    addDoNothingOption();
+                }, 200);
+            }
+
+            // Add to Step 2 list
+            const optionsList = document.getElementById('options-list');
+            const optionDiv = document.createElement('div');
+            optionDiv.className = 'option-container';
+            optionDiv.id = `${optionId}-brief`;
+            optionDiv.innerHTML = `
+                <div class="option-header">
+                    <span class="option-title">Option ${String.fromCharCode(64 + options.length)}</span>
+                    <button class="remove-btn" onclick="removeOption('${optionId}')">REMOVE</button>
+                </div>
+                <input type="text" id="${optionId}-name" placeholder="Be specific" />
+            `;
+            optionsList.appendChild(optionDiv);
+
+            // Add full analysis for this option
+            const analysisDiv = document.getElementById('option-analysis');
+            const analysisSection = document.createElement('div');
+            analysisSection.id = `${optionId}-analysis`;
+            analysisSection.innerHTML = `
+                <div class="step">
+                    <span class="step-number">OPTION ${String.fromCharCode(64 + options.length)}</span>
+                    <h2 id="${optionId}-analysis-title">Analysis</h2>
+
+                    <div class="step1-reference" style="margin-top: 1.5rem;">
+                        <h3>📌 Your Step 1 Answers</h3>
+                        <div class="step1-reference-item">
+                            <span class="step1-reference-label">Incentive:</span>
+                            <span class="step1-reference-text step1-ref-incentive">—</span>
+                        </div>
+                        <div class="step1-reference-item">
+                            <span class="step1-reference-label">Problem to solve:</span>
+                            <span class="step1-reference-text step1-ref-problem">—</span>
+                        </div>
+                        <div class="step1-reference-item">
+                            <span class="step1-reference-label">Values/Goals:</span>
+                            <span class="step1-reference-text step1-ref-values">—</span>
+                        </div>
+                    </div>
+
+                    <h2 style="margin-top: 2rem;">STEP 3: What does it take?</h2>
+                    
+                    <div class="question">→ TIME: How much time does this take?</div>
+                    <textarea id="${optionId}-time" placeholder="Your answer..."></textarea>
+
+                    <div class="question">→ MONEY: What's the financial cost?</div>
+                    <textarea id="${optionId}-money" placeholder="Your answer..."></textarea>
+
+                    <div class="question">→ Opportunity cost: What else could I do with this time/money?</div>
+                    <textarea id="${optionId}-opportunity" placeholder="Your answer..."></textarea>
+
+                    <div class="note">⚠️ Do I REALLY have that alternative opportunity right now?</div>
+                    <textarea id="${optionId}-opportunity-real" placeholder="Honest answer..."></textarea>
+
+                    <div class="question">→ Is the option feasible? (Do I have what it takes to make it happen?)</div>
+                    <textarea id="${optionId}-can-do" placeholder="Your answer..."></textarea>
+
+                    <h2 style="margin-top: 2rem;">STEP 4: What do I actually gain?</h2>
+                    
+                    <div class="question">→ What actually changes in my life?</div>
+                    <textarea id="${optionId}-changes" placeholder="Your answer..."></textarea>
+
+                    <div class="question">→ Calculate it if possible:</div>
+                    <textarea id="${optionId}-calculate" placeholder="Numbers, timeline, concrete outcomes..."></textarea>
+
+                    <div class="note">⚠️ Don't overdo imagination. You are not there until you do it.</div>
+
+                    <h2 style="margin-top: 2rem;">STEP 5: What if I fail?</h2>
+                    
+                    <div class="question">→ Visualise the failure scenarios:</div>
+                    <textarea id="${optionId}-fail-scenarios" placeholder="What could go wrong?"></textarea>
+
+                    <div class="question">→ Does it really harm me or just uncomfortable?</div>
+                    <textarea id="${optionId}-fail-harm" placeholder="Your answer..."></textarea>
+
+                    <div class="question">→ What do I still gain even if I fail?</div>
+                    <textarea id="${optionId}-fail-gain" placeholder="Your answer..."></textarea>
+
+                    <h2 style="margin-top: 2rem;">STEP 6: Worst case scenario</h2>
+
+                    <div class="question">→ What will happen in the worst case?</div>
+                    <textarea id="${optionId}-worst-scenario" placeholder="Your answer..."></textarea>
+
+                    <div class="question">→ Can I bear with it?</div>
+                    <textarea id="${optionId}-worst-bear" placeholder="Your answer..."></textarea>
+
+                    <div class="question">→ If NO: Can I try it on a smaller scale as a test first?</div>
+                    <textarea id="${optionId}-worst-smaller" placeholder="How to scale down?"></textarea>
+
+                    <div class="note">⚠️ Remember: It's not always 0 or 100.</div>
+                </div>
+            `;
+            analysisDiv.appendChild(analysisSection);
+
+            // Update title when name changes
+            document.getElementById(`${optionId}-name`).addEventListener('input', (e) => {
+                const title = document.getElementById(`${optionId}-analysis-title`);
+                if (e.target.value) {
+                    title.textContent = e.target.value;
+                } else {
+                    title.textContent = 'Analysis';
+                }
+                updateOptionsReminder();
+            });
+
+            updateOptionsReminder();
+        }
+
+        function updateOptionsReminder() {
+            const reminder = document.getElementById('options-reminder');
+            let html = '';
+
+            options.forEach((optionId, index) => {
+                const nameInput = document.getElementById(`${optionId}-name`);
+                const optionName = nameInput ? nameInput.value : '';
+                const letter = String.fromCharCode(65 + index);
+
+                if (optionName) {
+                    html += `<div style="margin-bottom: 0.5rem;"><strong>Option ${letter}:</strong> ${optionName}</div>`;
+                } else {
+                    html += `<div style="margin-bottom: 0.5rem;"><strong>Option ${letter}:</strong> <em style="color: var(--text-dim);">(not named yet)</em></div>`;
+                }
+            });
+
+            if (html === '') {
+                reminder.innerHTML = '<em style="color: var(--text-dim);">Your options will appear here after you add them.</em>';
+            } else {
+                reminder.innerHTML = html;
+            }
+        }
+
+        function addDoNothingOption() {
+            optionCounter++;
+            const optionId = `option-${optionCounter}`;
+            options.push(optionId);
+
+            // Add to Step 2 list
+            const optionsList = document.getElementById('options-list');
+            const optionDiv = document.createElement('div');
+            optionDiv.className = 'option-container';
+            optionDiv.id = `${optionId}-brief`;
+            optionDiv.innerHTML = `
+                <div class="option-header">
+                    <span class="option-title">Option ${String.fromCharCode(64 + options.length)}</span>
+                    <button class="remove-btn" onclick="removeOption('${optionId}')">REMOVE</button>
+                </div>
+                <input type="text" id="${optionId}-name" placeholder="Be specific" />
+            `;
+            optionsList.appendChild(optionDiv);
+
+            // Add full analysis for this option
+            const analysisDiv = document.getElementById('option-analysis');
+            const analysisSection = document.createElement('div');
+            analysisSection.id = `${optionId}-analysis`;
+            analysisSection.innerHTML = `
+                <div class="step">
+                    <span class="step-number">OPTION ${String.fromCharCode(64 + options.length)}</span>
+                    <h2 id="${optionId}-analysis-title">Do nothing and give up</h2>
+
+                    <div class="step1-reference" style="margin-top: 1.5rem;">
+                        <h3>📌 Your Step 1 Answers</h3>
+                        <div class="step1-reference-item">
+                            <span class="step1-reference-label">Incentive:</span>
+                            <span class="step1-reference-text step1-ref-incentive">—</span>
+                        </div>
+                        <div class="step1-reference-item">
+                            <span class="step1-reference-label">Problem to solve:</span>
+                            <span class="step1-reference-text step1-ref-problem">—</span>
+                        </div>
+                        <div class="step1-reference-item">
+                            <span class="step1-reference-label">Values/Goals:</span>
+                            <span class="step1-reference-text step1-ref-values">—</span>
+                        </div>
+                    </div>
+
+                    <h2 style="margin-top: 2rem;">STEP 3: What does it take?</h2>
+
+                    <div class="question">→ TIME: How much time does this take?</div>
+                    <textarea id="${optionId}-time" placeholder="Your answer..."></textarea>
+
+                    <div class="question">→ MONEY: What's the financial cost?</div>
+                    <textarea id="${optionId}-money" placeholder="Your answer..."></textarea>
+
+                    <div class="question">→ Opportunity cost: What else could I do with this time/money?</div>
+                    <textarea id="${optionId}-opportunity" placeholder="Your answer..."></textarea>
+
+                    <div class="note">⚠️ Do I REALLY have that alternative opportunity right now?</div>
+                    <textarea id="${optionId}-opportunity-real" placeholder="Honest answer..."></textarea>
+
+                    <div class="question">→ Is the option feasible? (Do I have what it takes to make it happen?)</div>
+                    <textarea id="${optionId}-can-do" placeholder="Your answer..."></textarea>
+
+                    <h2 style="margin-top: 2rem;">STEP 4: What do I actually gain?</h2>
+
+                    <div class="question">→ What actually changes in my life?</div>
+                    <textarea id="${optionId}-changes" placeholder="Your answer..."></textarea>
+
+                    <div class="question">→ Calculate it if possible:</div>
+                    <textarea id="${optionId}-calculate" placeholder="Numbers, timeline, concrete outcomes..."></textarea>
+
+                    <div class="note">⚠️ Don't overdo imagination. You are not there until you do it.</div>
+
+                    <h2 style="margin-top: 2rem;">STEP 5: What if I fail?</h2>
+
+                    <div class="question">→ Visualise the failure scenarios:</div>
+                    <textarea id="${optionId}-fail-scenarios" placeholder="What could go wrong?"></textarea>
+
+                    <div class="question">→ Does it really harm me or just uncomfortable?</div>
+                    <textarea id="${optionId}-fail-harm" placeholder="Your answer..."></textarea>
+
+                    <div class="question">→ What do I still gain even if I fail?</div>
+                    <textarea id="${optionId}-fail-gain" placeholder="Your answer..."></textarea>
+
+                    <h2 style="margin-top: 2rem;">STEP 6: Worst case scenario</h2>
+
+                    <div class="question">→ What will happen in the worst case?</div>
+                    <textarea id="${optionId}-worst-scenario" placeholder="Your answer..."></textarea>
+
+                    <div class="question">→ Can I bear with it?</div>
+                    <textarea id="${optionId}-worst-bear" placeholder="Your answer..."></textarea>
+
+                    <div class="question">→ If NO: Can I try it on a smaller scale as a test first?</div>
+                    <textarea id="${optionId}-worst-smaller" placeholder="How to scale down?"></textarea>
+
+                    <div class="note">⚠️ Remember: It's not always 0 or 100.</div>
+                </div>
+            `;
+            analysisDiv.appendChild(analysisSection);
+
+            // Set the name
+            document.getElementById(`${optionId}-name`).value = 'Do nothing and give up';
+
+            updateStep1Reference();
+            updateOptionsReminder();
+            autoSave();
+        }
+
+        function removeOption(optionId) {
+            if (!confirm('Remove this option?')) return;
+
+            options = options.filter(id => id !== optionId);
+            document.getElementById(`${optionId}-brief`).remove();
+            document.getElementById(`${optionId}-analysis`).remove();
+
+            // Renumber remaining options
+            const optionsList = document.getElementById('options-list').children;
+            const analysisItems = document.getElementById('option-analysis').children;
+
+            for (let i = 0; i < optionsList.length; i++) {
+                const letter = String.fromCharCode(65 + i);
+                optionsList[i].querySelector('.option-title').textContent = `Option ${letter}`;
+                analysisItems[i].querySelector('.step-number').textContent = `OPTION ${letter}`;
+            }
+
+            updateOptionsReminder();
+        }
+
+        function getAllData() {
+            const data = {
+                name: document.getElementById('decision-name').value,
+                step1: {
+                    values: document.getElementById('step1-values').value,
+                    problem: document.getElementById('step1-problem').value,
+                    incentive: document.getElementById('step1-incentive').value
+                },
+                options: [],
+                step7: {
+                    match: document.getElementById('step7-match').value,
+                    bear: document.getElementById('step7-bear').value,
+                    worth: document.getElementById('step7-worth').value,
+                    optionality: document.getElementById('step7-optionality').value
+                },
+                step8: {
+                    choice: document.getElementById('step8-choice').value,
+                    tasks: tasks,
+                    stoppoint: document.getElementById('step8-stoppoint').value,
+                    needs: document.getElementById('step8-needs').value
+                }
+            };
+
+            options.forEach(optionId => {
+                const optionData = {
+                    id: optionId,
+                    name: document.getElementById(`${optionId}-name`)?.value || '',
+                    time: document.getElementById(`${optionId}-time`)?.value || '',
+                    money: document.getElementById(`${optionId}-money`)?.value || '',
+                    opportunity: document.getElementById(`${optionId}-opportunity`)?.value || '',
+                    opportunityReal: document.getElementById(`${optionId}-opportunity-real`)?.value || '',
+                    canDo: document.getElementById(`${optionId}-can-do`)?.value || '',
+                    changes: document.getElementById(`${optionId}-changes`)?.value || '',
+                    calculate: document.getElementById(`${optionId}-calculate`)?.value || '',
+                    failScenarios: document.getElementById(`${optionId}-fail-scenarios`)?.value || '',
+                    failHarm: document.getElementById(`${optionId}-fail-harm`)?.value || '',
+                    failGain: document.getElementById(`${optionId}-fail-gain`)?.value || '',
+                    worstScenario: document.getElementById(`${optionId}-worst-scenario`)?.value || '',
+                    worstBear: document.getElementById(`${optionId}-worst-bear`)?.value || '',
+                    worstSmaller: document.getElementById(`${optionId}-worst-smaller`)?.value || ''
+                };
+                data.options.push(optionData);
+            });
+
+            return data;
+        }
+
+        function setAllData(data) {
+            document.getElementById('decision-name').value = data.name || '';
+            document.getElementById('step1-values').value = data.step1.values || '';
+            document.getElementById('step1-problem').value = data.step1.problem || '';
+            document.getElementById('step1-incentive').value = data.step1.incentive || '';
+
+            // Clear existing options
+            document.getElementById('options-list').innerHTML = '';
+            document.getElementById('option-analysis').innerHTML = '';
+            options = [];
+            optionCounter = 0;
+
+            // Recreate options
+            data.options.forEach(optionData => {
+                addOption();
+                const optionId = options[options.length - 1];
+                
+                document.getElementById(`${optionId}-name`).value = optionData.name || '';
+                document.getElementById(`${optionId}-time`).value = optionData.time || '';
+                document.getElementById(`${optionId}-money`).value = optionData.money || '';
+                document.getElementById(`${optionId}-opportunity`).value = optionData.opportunity || '';
+                document.getElementById(`${optionId}-opportunity-real`).value = optionData.opportunityReal || '';
+                document.getElementById(`${optionId}-can-do`).value = optionData.canDo || '';
+                document.getElementById(`${optionId}-changes`).value = optionData.changes || '';
+                document.getElementById(`${optionId}-calculate`).value = optionData.calculate || '';
+                document.getElementById(`${optionId}-fail-scenarios`).value = optionData.failScenarios || '';
+                document.getElementById(`${optionId}-fail-harm`).value = optionData.failHarm || '';
+                document.getElementById(`${optionId}-fail-gain`).value = optionData.failGain || '';
+                document.getElementById(`${optionId}-worst-scenario`).value = optionData.worstScenario || '';
+                document.getElementById(`${optionId}-worst-bear`).value = optionData.worstBear || '';
+                document.getElementById(`${optionId}-worst-smaller`).value = optionData.worstSmaller || '';
+
+                // Trigger title update
+                if (optionData.name) {
+                    document.getElementById(`${optionId}-analysis-title`).textContent = optionData.name;
+                }
+            });
+
+            document.getElementById('step7-match').value = data.step7.match || '';
+            document.getElementById('step7-bear').value = data.step7.bear || '';
+            document.getElementById('step7-worth').value = data.step7.worth || '';
+            document.getElementById('step7-optionality').value = data.step7.optionality || '';
+            document.getElementById('step8-choice').value = data.step8.choice || '';
+
+            // Restore tasks
+            document.getElementById('task-list').innerHTML = '';
+            tasks = [];
+            taskCounter = 0;
+            if (Array.isArray(data.step8.tasks)) {
+                data.step8.tasks.forEach(taskData => {
+                    taskCounter++;
+                    const taskId = `task-${taskCounter}`;
+                    tasks.push({ id: taskId, completed: taskData.completed, text: taskData.text });
+
+                    const taskList = document.getElementById('task-list');
+                    const taskDiv = document.createElement('div');
+                    taskDiv.className = 'task-item' + (taskData.completed ? ' completed' : '');
+                    taskDiv.id = taskId;
+                    taskDiv.innerHTML = `
+                        <input type="checkbox" ${taskData.completed ? 'checked' : ''} onchange="toggleTask('${taskId}')" />
+                        <input type="text" placeholder="Enter task..." value="${taskData.text || ''}" oninput="updateTaskText('${taskId}', this.value)" />
+                        <button class="remove-task-btn" onclick="removeTask('${taskId}')">×</button>
+                    `;
+                    taskList.appendChild(taskDiv);
+                });
+            }
+
+            document.getElementById('step8-stoppoint').value = data.step8.stoppoint || '';
+            document.getElementById('step8-needs').value = data.step8.needs || '';
+
+            // Update Step 1 reference after loading
+            updateStep1Reference();
+        }
+
+        function autoSave() {
+            const data = getAllData();
+            localStorage.setItem('amy-decision-autosave', JSON.stringify(data));
+        }
+
+        function saveDecision() {
+            const data = getAllData();
+            const name = data.name || 'unnamed-decision';
+            const filename = name.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+            
+            localStorage.setItem(`amy-decision-${filename}`, JSON.stringify(data));
+            
+            showSaved();
+        }
+
+        function loadDecision() {
+            const keys = Object.keys(localStorage).filter(k => k.startsWith('amy-decision-'));
+            
+            if (keys.length === 0) {
+                alert('No saved decisions found');
+                return;
+            }
+
+            const choices = keys.map(k => {
+                const data = JSON.parse(localStorage.getItem(k));
+                return data.name || k.replace('amy-decision-', '');
+            });
+
+            const choice = prompt(`Saved decisions:\n${choices.map((c, i) => `${i + 1}. ${c}`).join('\n')}\n\nEnter number to load:`);
+            
+            if (!choice) return;
+            
+            const index = parseInt(choice) - 1;
+            if (index >= 0 && index < keys.length) {
+                const data = JSON.parse(localStorage.getItem(keys[index]));
+                setAllData(data);
+                showSaved();
+            }
+        }
+
+        function exportDecision() {
+            const data = getAllData();
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${data.name || 'decision'}.json`;
+            a.click();
+        }
+
+        function printPDF() {
+            window.print();
+        }
+
+        function clearAll() {
+            if (!confirm('Clear ALL data? This cannot be undone.')) return;
+
+            document.getElementById('decision-name').value = '';
+            document.getElementById('step1-values').value = '';
+            document.getElementById('step1-problem').value = '';
+            document.getElementById('step1-incentive').value = '';
+            document.getElementById('options-list').innerHTML = '';
+            document.getElementById('option-analysis').innerHTML = '';
+            document.getElementById('step7-match').value = '';
+            document.getElementById('step7-bear').value = '';
+            document.getElementById('step7-worth').value = '';
+            document.getElementById('step7-optionality').value = '';
+            document.getElementById('step8-choice').value = '';
+            document.getElementById('task-list').innerHTML = '';
+            document.getElementById('step8-stoppoint').value = '';
+            document.getElementById('step8-needs').value = '';
+
+            options = [];
+            optionCounter = 0;
+            tasks = [];
+            taskCounter = 0;
+
+            localStorage.removeItem('amy-decision-autosave');
+        }
+
+        function showSaved() {
+            const indicator = document.getElementById('saved-indicator');
+            indicator.classList.add('show');
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+
+        // Load autosave on page load
+        window.addEventListener('load', () => {
+            const autosave = localStorage.getItem('amy-decision-autosave');
+            if (autosave) {
+                setAllData(JSON.parse(autosave));
+            }
+            // Initialize Step 1 reference
+            updateStep1Reference();
+            updateOptionsReminder();
+        });
+    </script>
+</body>
+</html>
