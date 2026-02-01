@@ -3,7 +3,7 @@ title: Mission statement
 author: dosomeharmsafari
 date: 2097-07-01 00:01:00 +0800
 categories: [Aviation]
-tags: 
+tags: []
 render_with_liquid: false
 ---
 
