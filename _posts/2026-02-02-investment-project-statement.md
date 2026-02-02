@@ -6,6 +6,7 @@ categories: [Investment]
 tags: []
 render_with_liquid: false
 ---
+
 This project is my battle for the freedom I want in life. It's about building a safety net for my survival, granting me the right to say no to anything not authentic to me. This ensures me the headspace to wander, focus only on what truly makes me feel alive and push beyond limits.
 
 Unlike other skills, investing lacks a trustworthy learning path and there is no clear benchmark to separate investing from gambling. But the biggest enemy is always internal. My mind has been wired with a poisoned relationship with money and an operating system prone to scattered focus and being easily crushed in the early deep-thinking process.
