@@ -1,5 +1,10 @@
 ---
 title: Investment project statement
+author: dosomeharmsafari
+date: 2026-02-02 00:01:00 +0800
+categories: [Investment]
+tags: []
+render_with_liquid: false
 ---
 This project is my battle for the freedom I want in life. It's about building a safety net for my survival, granting me the right to say no to anything not authentic to me. This ensures me the headspace to wander, focus only on what truly makes me feel alive and push beyond limits.
 
