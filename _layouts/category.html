@@ -1,0 +1,36 @@
+---
+layout: page
+# The Category layout - customized to support pinning posts within categories
+---
+
+{% include lang.html %}
+
+{% assign pinned_posts = page.posts | where: 'pinned_in_category', true %}
+{% assign normal_posts = page.posts | where_exp: 'item', 'item.pinned_in_category != true' %}
+
+<div id="page-category">
+  <h1 class="ps-lg-2">
+    <i class="far fa-folder-open fa-fw text-muted"></i>
+    {{ page.title }}
+    <span class="lead text-muted ps-2">{{ page.posts | size }}</span>
+  </h1>
+
+  <ul class="content ps-0">
+    {% for post in pinned_posts %}
+      <li class="d-flex justify-content-between px-md-3">
+        <a href="{{ post.url | relative_url }}">
+          <i class="fas fa-thumbtack fa-fw me-1 text-muted small"></i>{{ post.title }}
+        </a>
+        <span class="dash flex-grow-1"></span>
+        {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
+      </li>
+    {% endfor %}
+    {% for post in normal_posts %}
+      <li class="d-flex justify-content-between px-md-3">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="dash flex-grow-1"></span>
+        {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
