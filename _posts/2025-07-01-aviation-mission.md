@@ -1,10 +1,11 @@
 ---
 title: Mission statement
 author: dosomeharmsafari
-date: 2097-07-01 00:01:00 +0800
+date: 2025-07-01 00:01:00 +0800
 categories: [Aviation]
 tags: []
 render_with_liquid: false
+pinned_in_category: true
 ---
 
 This writing project was sparked by my own struggle when I jumped into aviation with absolutely zero background. I literally didn't know enough to even ask a question as the basic framework is missing. The Instructors conventionally assume everyone already knew some things, making those foundational questions feel completely out of reach. 
